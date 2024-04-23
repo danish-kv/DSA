@@ -139,6 +139,15 @@ class LinkedList:
     def clear(self):
         self.head = None
 
+    def array_to_ll(self, arr):
+        n = self.head
+        while n.ref is not None:
+            n = n.ref
+
+        for data in arr:
+            n.ref = Node(data)
+            n = n.ref
+
 
 LL = LinkedList()
 LL.add_begin(10)
@@ -146,9 +155,10 @@ LL.add_begin(15)
 LL.add_end(20)
 LL.add_before(25, 15)
 LL.add_after(30, 15)
-LL.index_of(15)
-LL.size()
-LL.is_empty()
-LL.clear()
+# LL.index_of(15)
+# LL.size()
+# LL.is_empty()
+# LL.clear()
 # LL.insert_empty(100)
+LL.array_to_ll([1, 2, 3, 4])
 LL.print()

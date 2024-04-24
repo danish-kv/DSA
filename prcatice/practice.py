@@ -284,7 +284,7 @@ class LinkedList:
     def print(self):
         n = self.head
         while n is not None:
-            print(n.data, '-->', end=" ")
+            print(n.key, '-->', end=" ")
             n = n.ref
 
     def insert_empty(self, data):
@@ -336,7 +336,7 @@ class LinkedList:
         if self.head is None:
             print('its empty')
             return
-        if pos == self.head.data:
+        if pos == self.head.key:
             new_node.ref = self.head
             self.head = new_node
             return
@@ -377,12 +377,12 @@ class LinkedList:
         if self.head is None:
             print('ITs empty')
             return
-        if pos == self.head.data:
+        if pos == self.head.key:
             self.head = self.head.ref
             return
         n = self.head
         while n is not None:
-            if pos == n.ref.data:
+            if pos == n.ref.key:
                 break
             n = n.ref
         if n is None:
@@ -398,7 +398,7 @@ class LinkedList:
         n = self.head
         while n is not None:
             c += 1
-            if pos == n.data:
+            if pos == n.key:
                 return c
             n = n.ref
         return -1
@@ -416,7 +416,7 @@ class LinkedList:
         n = self.head
         l = []
         while n is not None:
-            l.append(n.data)
+            l.append(n.key)
             n = n.ref
         print(l)
 
@@ -450,7 +450,7 @@ class LinkedList:
         while fast and fast.ref:
             slow = slow.ref
             fast = fast.ref.ref
-        print(slow.data)
+        print(slow.key)
 
     # def rev_linked(self):
 
@@ -576,7 +576,7 @@ class LinkedList1:
     def print(self):
         n = self.head
         while n is not None:
-            print(n.data, '-->', end=" ")
+            print(n.key, '-->', end=" ")
             n = n.ref
 
     def add_end(self, data):

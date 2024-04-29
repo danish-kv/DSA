@@ -57,3 +57,9 @@ for i in mylist:
     h.insert(i)
 
 print(h.heap)
+h.remove(3)
+print('After Deletion')
+print(h.heap)
+print()
+print("Top Value",h.peek_max())
+print("Extract the Value from MAX HEAP :-",h.peek_max())

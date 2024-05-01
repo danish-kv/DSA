@@ -1,4 +1,3 @@
-
 class BST:
     def __init__(self, key):
         self.key = key
@@ -32,7 +31,7 @@ class BST:
 
         if self.key > data:
             if self.lchild is not None:
-                return (self.lchild.search(data))
+                return self.lchild.search(data)
             else:
                 return 'Not Contain'
 
@@ -54,7 +53,7 @@ class BST:
         return 'Not Found'
 
     def preorder(self):
-        print(self.key,end=" ")
+        print(self.key, end=" ")
         if self.lchild:
             self.lchild.preorder()
         if self.rchild:
@@ -64,7 +63,7 @@ class BST:
         if self.lchild:
             self.lchild.inorder()
 
-        print(self.key,end=" ")
+        print(self.key, end=" ")
 
         if self.rchild:
             self.rchild.inorder()
@@ -78,19 +77,19 @@ class BST:
 
         print(self.key, end=" ")
 
-    def remove(self,data,curr):
+    def remove(self, data, curr):
         if self.key is None:
             print('BST is Empty')
             return
         if data < self.key:
             if self.lchild:
-                self.lchild = self.lchild.remove(data,curr)
+                self.lchild = self.lchild.remove(data, curr)
             else:
                 print('Not Found')
 
         elif data > self.key:
             if self.rchild:
-                self.rchild = self.rchild.remove(data,curr)
+                self.rchild = self.rchild.remove(data, curr)
         else:
             if self.lchild is None:
                 temp = self.rchild
@@ -116,10 +115,10 @@ class BST:
             while node.lchild:
                 node = node.lchild
             self.key = node.key
-            self.rchild = self.rchild.remove(node.key,curr )
+            self.rchild = self.rchild.remove(node.key, curr)
             return self
 
-    def count(self,node):
+    def count(self, node):
         if node is None:
             return 0
         return 1 + self.count(node.lchild) + self.count(node.rchild)
@@ -128,14 +127,14 @@ class BST:
         curr = self
         while curr.lchild:
             curr = curr.lchild
-        print(curr.key)
+        print('Min:-', curr.key)
         return
 
     def max_node(self):
         curr = self
         while curr.rchild:
             curr = curr.rchild
-        print(curr.key)
+        print('Max:-', curr.key)
         return
 
     def min_node_using_recurion(self):
@@ -145,33 +144,25 @@ class BST:
             print('min is ', self.key)
 
 
-
-
-
-
-
-
-
-
-
 arr = [12, 8, 3, 98, 45]
 tree = BST(10)
 for i in arr:
     tree.insert(i)
 
-# print(tree.search(8))
-# print(tree.search(10))
+print(tree.search(8))
+print(tree.search(10))
 print('Pre Order')
 tree.preorder()
-# print('\nIn order')
-# tree.inorder()
-# print('\nPost Order')
-# tree.postorder()
+print('\nIn order')
+tree.inorder()
+print('\nPost Order')
+tree.postorder()
 print()
 if tree.count(tree) > 1:
-    tree.remove(10,tree.key)
+    tree.remove(10, tree.key)
 else:
     print("Can't perform delete opretion")
+print('After deletetion opretion')
 tree.preorder()
 print()
 tree.min_node()

@@ -1,55 +1,102 @@
-class TreeNode:
-    def __init__(self,data):
-        self.data = data
-        self.left = None
-        self.right = None
+class BST:
+    def __init__(self, key):
+        self.key = key
+        self.lchild = None
+        self.rchild = None
 
-class Tree:
-    def __init__(self):
-        self.root = None
-
-
-    def insert(self,data):
-        new_node = TreeNode(data)
-        current_node = self.root
-        if current_node is None:
-            self.root = TreeNode(data)
+    def insert(self, data):
+        if self.key == data:
+            print('duplicates not')
+            return
+        if self.key is None:
+            self.key = data
+            return
         else:
-            while Tree:
-                if data < current_node.data:
-                    if current_node.left is None:
-                        current_node.left = TreeNode(data)
-                        break
-                    else:
-                        current_node = current_node.left
+            if data < self.key:
+                if self.lchild:
+                    self.lchild.insert(data)
                 else:
-                    if current_node.right is None:
-                        current_node.right = TreeNode(data)
-                        break
-                    else:
-                        current_node = current_node.right
-
-    def contains(self,data):
-        current_node = self.root
-        while current_node is not None:
-            if data < current_node.key:
-                current_node = current_node.left
-            elif data > current_node.key:
-                current_node = current_node.right
+                    self.lchild = BST(data)
             else:
-                return print('yes')
-        return print('Not Contain')
+                if self.rchild:
+                    self.rchild.insert(data)
+                else:
+                    self.rchild = BST(data)
+
+    def search(self,data):
+        if self.key is None:
+            print('BST is Empty')
+            return
+
+        if self.key == data:
+            print(data,'founded')
+            return
+        if data < self.key:
+            if self.lchild:
+                self.lchild.search(data)
+            else:
+                print('not found')
+                return
+        else:
+            if self.rchild:
+                self.rchild.search(data)
+            else:
+                print('not found')
+                return
+
+    def remove(self,data,curr):
+        if self.key is None:
+            print('Tree not grown')
+            return
+        if data < self.key:
+            if self.lchild:
+                self.lchild = self.lchild.remove(data,curr)
+            else:
+                print('Not Present')
+                return
+        elif data > self.key:
+            if self.rchild:
+                self.rchild = self.rchild.remove(data,curr)
+            else:
+                print('not Found')
+        else:
+            if self.lchild is None:
+                temp = self.rchild
+                if data == curr:
+                    self.key = temp.key
+                    self.rchild = temp.rchild
+                    self.lchild = temp.lchild
+                    temp = None
+                    return
+                self = None
+                return temp
+            if self.rchild is None:
+                temp = self.lchild
+                if data == curr:
+                    self.key = temp.key
+                    self.rchild = temp.rchild
+                    self.lchild = temp.lchild
+                    temp = None
+                    return
+                self = None
+                return  temp
+            node = self.rchild
+            while node.lchild:
+                node = node.lchild
+            self.key = node.key
+            self.rchild = self.rchild.remove(node.key,curr)
+            return self
 
 
 
 
 
 
+tree = BST(10)
+arr = [12, 5, 8, 3, 4]
+for i in arr:
+    tree.insert(i)
 
-
-t = Tree()
-t.insert(10)
-t.insert(20)
-t.insert(30)
-t.contains(10)
-
+tree.search(10)
+tree.remove(10,tree)
+tree.search(10)

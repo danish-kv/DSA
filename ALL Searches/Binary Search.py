@@ -18,9 +18,29 @@ p = binary(arr, k)
 print(p)
 
 
+"""
+Binary Search using recursion
+"""
+
+def binary_recusive(arr, find, l, r):
+    # l = 0
+    # r = len(arr) - 1
+    while l <= r:
+        m = (l + r) // 2
+
+        if arr[m] == find:
+            return m
+        elif find < arr[m]:
+            return binary_recusive(arr, find, l, m - 1)
+        else:
+            return binary_recusive(arr, find, m + 1, r)
+    return -1
 
 
-
+arr = [10, 20, 30, 40, 50]
+l = 0
+r = len(arr)
+print(binary_recusive(arr,20,l,r))
 
 
 
